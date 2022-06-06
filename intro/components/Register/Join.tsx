@@ -1,15 +1,5 @@
-import Image  from "next/image";
-import {useEffect, useState} from "react";
 import create from "zustand";
-import {useStore} from "../_Common/KakaoLogin";
 
-// export const [data, setState] = useState({
-//     battleTag : ''
-//     ,kakaoId  : ''
-//     ,phoneNum : ''
-//     ,tier     : ''
-//     ,comment  : ''
-// });
 export const JoinData = create( (set:any) =>({
     data :  {
         battleTag : ''
@@ -26,7 +16,6 @@ export const JoinData = create( (set:any) =>({
 
     }
 ));
-//setValue(val:string){set((state:any) => ({battleTag : val}))
 export default function Join(){
     const {data,setData} = JoinData();
      const dataChange = (e:any) =>{

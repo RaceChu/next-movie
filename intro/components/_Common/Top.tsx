@@ -3,7 +3,6 @@ import Marquee from "react-fast-marquee"; //https://www.react-fast-marquee.com/d
 import Link from 'next/link';
 import {KAKAO_AUTH_URL} from "./KakaoLogin";
 import {useStore} from "./KakaoLogin";
-import create from 'zustand';
 import Modal from 'react-bootstrap/Modal';
 import {useEffect, useState} from "react";
 import {getCookie} from "./Cookie";
