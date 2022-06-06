@@ -9,9 +9,9 @@ import Main_Content from "../components/Main/Main_Content";
 export default function Home(){
   return (
       <div>
-        <Top />
-        <Main_Content />
-        <Footer />
+          <Top />
+          <Main_Content />
+          <Footer />
 
       </div>
   )

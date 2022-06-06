@@ -6,7 +6,9 @@ import About from "../components/About/About";
 export default function member(){
     return (
         <section>
+            <Top />
             <About />
+            <Footer />
         </section>
     )
 }

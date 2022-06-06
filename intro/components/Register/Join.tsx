@@ -1,55 +1,51 @@
 import Image  from "next/image";
-import {SetStateAction, useRef, useState} from "react";
-import {any} from "prop-types";
+import {useEffect, useState} from "react";
+import create from "zustand";
+import {useStore} from "../_Common/KakaoLogin";
 
+// export const [data, setState] = useState({
+//     battleTag : ''
+//     ,kakaoId  : ''
+//     ,phoneNum : ''
+//     ,tier     : ''
+//     ,comment  : ''
+// });
+export const JoinData = create( (set:any) =>({
+    data :  {
+        battleTag : ''
+        ,kakaoId  : ''
+        ,phoneNum : ''
+        ,tier     : ''
+        ,comment  : ''
+        }
+        ,setData : (key:string,val:string) =>{
+            // console.log(key +':'+val);
+            set((state:any) => (state.data[key] = val))
+            // key : val
+        }
 
-export default function Join() {
-    const battleTag = useRef<any>();
-    const m_gender = useRef<any>();
-    const m_birth_year = useRef<any>();
-    const m_residence = useRef<any>();
-    const m_youtube_url = useRef<any>();
-    const tb_comment = useRef<any>();
-
-    let data = {test : 'msg'};
-
-    const [text, setText] = useState('');
-    const onChange = (e: { target: {
-                            id: SetStateAction<string>;
-                            value: SetStateAction<string>; }; }) => {
-        setText(e.target.value)
-        let t = e.target.id;
-        let data = {t: 'test'};
-
-
-
-        console.log('test : '+data.t);
-        // console.log(e.target.id);
-
-
-    };
-
-    const send = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
-        const tag = battleTag.current.value;
-        console.log(tag);
-        e.preventDefault();
-        return null;
-    };
-
-
+    }
+));
+//setValue(val:string){set((state:any) => ({battleTag : val}))
+export default function Join(){
+    const {data,setData} = JoinData();
+     const dataChange = (e:any) =>{
+         // console.log(e.target.value);
+         setData(e.target.name,e.target.value);
+    }
     return (
         <section className="page-section spad contact-page">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4 mb-5 mb-lg-0">
                         <h4 className="comment-title">Join us</h4>
-                        <p>Welcome Ajae Guild</p>
+                        <p>Welcome to Ajae guild</p>
                         <div className="row">
                             <div className="col-md-9">
                                 <ul className="contact-info-list">
                                     <li>
                                         <div className="cf-left">Kakao Talk</div>
-                                        <div className="cf-right">open.kakao.com/o/gvPN28Qc</div>
+                                        <div className="cf-right">애드워드애릭</div>
                                     </li>
                                     <li>
                                         <div className="cf-left">Phone</div>
@@ -57,7 +53,7 @@ export default function Join() {
                                     </li>
                                     <li>
                                         <div className="cf-left">E-mail</div>
-                                        <div className="cf-right">ckjenter@gmail.com</div>
+                                        <div className="cf-right">admin@ajae.com</div>
                                     </li>
                                 </ul>
                             </div>
@@ -74,30 +70,23 @@ export default function Join() {
                     <div className="col-lg-8">
                         <div className="contact-form-warp">
                             <h4 className="comment-title">Join Category</h4>
-                            <form className="comment-form" onSubmit={send}  >
+                            <form className="comment-form">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <input type="text" ref={battleTag} id={"battleTag"}  placeholder="Battle Tag" onChange={onChange} value={text} />
+                                        <input type="text" placeholder="Battle Tag"      name="battleTag"  value={data.battleTag}  onChange={dataChange} />
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="text"  ref={m_gender} placeholder="Gender - 남 or 여" maxLength={1}  onChange={onChange}/>
+                                        <input type="text" placeholder="Kakao ID(EMAIL)"  name="kakaoId"  value={data.kakaoId} onChange={dataChange}/>
                                     </div>
-                                    <div className="col-md-6">
-                                        <input type="text"  ref={m_birth_year} placeholder="Birth Year - 85" maxLength={2}  onChange={onChange}/>
+                                    <div className="col-lg-6">
+                                        <input type="text" placeholder="Phone Number"     name="phoneNum" value={data.phoneNum} onChange={dataChange}/>
                                     </div>
-                                    <div className="col-md-6">
-                                        <input type="text"
-                                               ref={m_residence}
-                                               placeholder="Residence - 부산"
-                                               max={5}
-                                               onChange={onChange}/>
+                                    <div  className="col-lg-6">
+                                        <input type="text" placeholder="Current Tier"     name="tier"     value={data.tier} onChange={dataChange}/>
                                     </div>
                                     <div className="col-lg-12">
-                                        <input type="text"  ref={m_youtube_url} placeholder="Youtube Url"  onChange={onChange} />
-                                    </div>
-                                    <div className="col-lg-12">
-                                            <textarea ref={tb_comment}  placeholder="Message"></textarea>
-                                            <button className="site-btn btn-sm" onClick={send}>Send</button>
+                                            {/*<textarea placeholder="Message">{data.comment}</textarea>*/}
+                                            <button className="site-btn btn-sm">Send</button>
                                     </div>
                                 </div>
                             </form>

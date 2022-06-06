@@ -7,11 +7,11 @@ export default function Footer(){
             <footer className="footer-section">
                 <div className="container">
                     <ul className="footer-menu">
-                        <li><Link href={`/`}><a href="#">Home</a></Link></li>
-                        <li><Link href={`/About`}><a href="#">About Guild</a></Link></li>
-                        <li><Link href={`/member`}><a href="#">Member</a></Link></li>
-                        <li><Link href={`/CivilWar`}><a href="#">Civil War</a></Link></li>
-                        <li><Link href={`/Analytics`}><a href="#">Analytics</a></Link></li>
+                        <li><Link href={`/`}><a href="">Home</a></Link></li>
+                        <li><Link href={`/review`}><a href="">About Guild</a></Link></li>
+                        <li><Link href={`/categories`}><a href="">Member</a></Link></li>
+                        <li><Link href={`/community`}><a href="">Civil War</a></Link></li>
+                        <li><Link href={`/contact`}><a href="">Analytics</a></Link></li>
                     </ul>
                     <p className="copyright">
                         Copyright &copy;

@@ -4,26 +4,41 @@ import Link from 'next/link';
 import {KAKAO_AUTH_URL} from "./KakaoLogin";
 import {useStore} from "./KakaoLogin";
 import create from 'zustand';
-import {getCookie} from "./Cookie";
 import Modal from 'react-bootstrap/Modal';
 import {useEffect, useState} from "react";
-
-
+import {getCookie} from "./Cookie";
+import {removeCookie} from "./Cookie";
 
 export default function Top(){
-    const {text,Change} = useStore();
-    const [show, setShow] = useState(false)
-    const tag = getCookie("tag");
+    const {text,setText} = useStore();
+    const [show, setShow] = useState(false);
     const ModalClose = () =>{
         setShow(false);
     };
-    console.log("tag : "+tag);
+    const tag = getCookie("tag");
+    console.log('tag 1 : '+tag);
+    useEffect(() => {
+        if(typeof tag !== 'undefined'){
+            setText(tag);
+        }
+    },[]);
+
+    const LoginAction = () =>{
+        if(typeof tag !== 'undefined'){
+            removeCookie();
+            setText('KaKao login');
+        }else{
+            setShow(true);
+        }
+
+    }
+
     useEffect(() => {
         window.addEventListener(
             "message",
             (e) => {
                 if (e.origin === "http://localhost:3000" && e.data.message) {
-                    console.log(e);
+                    console.log("e : "+e);
                 }
 
             },
@@ -41,7 +56,7 @@ export default function Top(){
                     <div className="user-panel">
                         {/*<a  href={KAKAO_AUTH_URL}>*/}
                         {/*<a  onClick={loginPopup}>*/}
-                        <a  onClick={() => setShow(true)}>
+                        <a  onClick={LoginAction}>
                             <span>{text}</span>
                         </a >
                         {/*<a><input onClick={()=>{Change();}} type={"button"} value={"button"}/></a>*/}
@@ -68,7 +83,6 @@ export default function Top(){
                     dialogClassName="modal-90w"
                     aria-labelledby="example-custom-modal-styling-title"
                     size="lg"
-
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="example-custom-modal-styling-title">

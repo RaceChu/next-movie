@@ -1,21 +1,4 @@
-import axios from 'axios';
-import {useStore} from "../_Common/KakaoLogin";
-// import top from '/components/_Common/Top';
-
 export default function Member(){
-
-    function test_ajax(){
-        axios.post('http://localhost:8080/tsst_Ajax.do',{
-            m_mail : 'test'
-        })
-            .then( response => {
-                console.log(response)
-            })
-            .catch( response => {
-                console.log(response)
-            });
-    }
-
     return (
         <section className="footer-top-section" style={{minHeight:"700px"}}>
             <div className="container">
@@ -32,7 +15,6 @@ export default function Member(){
                     <div className="col-lg-4 col-md-6">:
                         <div className="footer-widget mb-5 mb-md-0">
                             <h4 className="fw-title">Member Posts</h4>
-                             <p><input type={"button"} value={"test_ajax"} onClick={test_ajax}/></p>
                             <div className="latest-blog">
                                 <div className="lb-item">
                                     <div className="lb-thumb set-bg" data-setbg="/styels/img/latest-blog/1.jpg">

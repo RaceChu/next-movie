@@ -6,7 +6,9 @@ import Analytics from "../components/Analytics/Analytics";
 export default function member(){
     return (
         <section>
+            <Top />
             <Analytics />
+            <Footer />
         </section>
     )
 }
